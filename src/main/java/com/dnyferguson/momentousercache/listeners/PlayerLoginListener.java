@@ -38,8 +38,8 @@ public class PlayerLoginListener implements Listener {
                     plugin.getSql().executeStatementAsync("INSERT INTO `users` (`uuid`, `ign`, `head_texture`, `last_updated`) VALUES ('" + player.getUniqueId() + "', '" + player.getName() + "', '" + headTexture + "', CURRENT_TIMESTAMP)");
                 }
 
-                User user = new User(player.getUniqueId(), player.getName(), headTexture);
-                plugin.getUsersByIgn().put(player.getName(), user);
+                User user = new User(player.getUniqueId(), player.getName(), player.getName().toLowerCase(), headTexture);
+                plugin.getUsersByIgn().put(player.getName().toLowerCase(), user);
                 plugin.getUsersByUUID().put(player.getUniqueId(), user);
                 plugin.getLoggedInToday().put(player.getUniqueId(), true);
             }

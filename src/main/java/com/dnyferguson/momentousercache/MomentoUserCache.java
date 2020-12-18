@@ -29,9 +29,6 @@ public final class MomentoUserCache extends JavaPlugin {
         api = new API(this);
         getServer().getPluginManager().registerEvents(new PlayerLoginListener(this), this);
 
-        MomentoUserCache plugin = (MomentoUserCache) Bukkit.getServer().getPluginManager().getPlugin("MomentoUserCache");
-        plugin.getApi();
-
         sql.getResultAsync("SELECT * FROM `users`", new FindResultCallback() {
             @Override
             public void onQueryDone(ResultSet result) throws SQLException {
@@ -41,9 +38,10 @@ public final class MomentoUserCache extends JavaPlugin {
                     try {
                         UUID uuid = UUID.fromString(result.getString("uuid"));
                         String ign = result.getString("ign");
-                        User user = new User(uuid, ign, result.getString("head_texture"));
+                        String lowercase = ign.toLowerCase();
+                        User user = new User(uuid, ign, lowercase, result.getString("head_texture"));
                         usersByUUID.put(uuid, user);
-                        usersByIgn.put(ign, user);
+                        usersByIgn.put(lowercase, user);
                         count++;
                     } catch (Exception ignore) {}
                 }

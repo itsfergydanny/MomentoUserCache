@@ -5,11 +5,13 @@ import java.util.UUID;
 public class User {
     private UUID uuid;
     private String ign;
+    private String lowercaseIgn;
     private String headTexture;
 
-    public User(UUID uuid, String ign, String headTexture) {
+    public User(UUID uuid, String ign, String lowercaseIgn, String headTexture) {
         this.uuid = uuid;
         this.ign = ign;
+        this.lowercaseIgn = lowercaseIgn;
         this.headTexture = headTexture;
     }
 
@@ -35,5 +37,13 @@ public class User {
 
     public void setHeadTexture(String headTexture) {
         this.headTexture = headTexture;
+    }
+
+    public String getLowercaseIgn() {
+        return lowercaseIgn;
+    }
+
+    public void setLowercaseIgn(String lowercaseIgn) {
+        this.lowercaseIgn = lowercaseIgn;
     }
 }

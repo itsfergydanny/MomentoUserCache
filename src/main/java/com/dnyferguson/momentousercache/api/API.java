@@ -21,8 +21,22 @@ public class API {
      * @return The UUID the specified player last logged on with
      */
     public UUID getUUID(String username) {
-        if (plugin.getUsersByIgn().containsKey(username)) {
-            return plugin.getUsersByIgn().get(username).getUuid();
+        String name = username.toLowerCase();
+        if (plugin.getUsersByIgn().containsKey(name)) {
+            return plugin.getUsersByIgn().get(name).getUuid();
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param username
+     * @return The case correct/sensitive version of the players in-game name
+     */
+    public String getCaseCorrectUsername(String username) {
+        String name = username.toLowerCase();
+        if (plugin.getUsersByIgn().containsKey(name)) {
+            return plugin.getUsersByIgn().get(name).getIgn();
         }
         return null;
     }
@@ -45,8 +59,9 @@ public class API {
      * @return The players head texture
      */
     public String getHeadTexture(String username) {
-        if (plugin.getUsersByIgn().containsKey(username)) {
-            return plugin.getUsersByIgn().get(username).getHeadTexture();
+        String name = username.toLowerCase();
+        if (plugin.getUsersByIgn().containsKey(name)) {
+            return plugin.getUsersByIgn().get(name).getHeadTexture();
         }
         return null;
     }
@@ -69,7 +84,8 @@ public class API {
      * @return A blank playerhead item with the texture of the specified player
      */
     public ItemStack getHeadItem(String username) {
-        String headTexture = getHeadTexture(username);
+        String name = username.toLowerCase();
+        String headTexture = getHeadTexture(name);
         if (headTexture == null) {
             return null;
         }
