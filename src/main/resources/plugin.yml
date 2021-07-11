@@ -1,4 +1,3 @@
 name: MomentoUserCache
 version: ${project.version}
 main: com.dnyferguson.momentousercache.MomentoUserCache
-api-version: 1.12
