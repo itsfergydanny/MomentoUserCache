@@ -6,7 +6,7 @@
 
     <groupId>com.dnyferguson</groupId>
     <artifactId>MomentoUserCache</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-1.16</version>
     <packaging>jar</packaging>
 
     <name>MomentoUserCache</name>
@@ -30,18 +30,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
+                        <id>shade</id>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>com.zaxxer.hikari</pattern>
+                            <shadedPattern>com.dnyferguson.momentousercache.hikari</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +82,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -87,14 +93,14 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.12.2</version>
+            <version>1.16.5</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/craftbukkit-1.12.2.jar</systemPath>
+            <systemPath>${project.basedir}/libs/craftbukkit-1.16.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>3.4.5</version>
+            <version>5.0.0</version>
         </dependency>
     </dependencies>
 </project>
